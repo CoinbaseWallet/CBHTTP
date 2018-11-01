@@ -1,0 +1,35 @@
+// Copyright (c) 2017-2018 Coinbase Inc. See LICENSE
+
+import Foundation
+
+public enum NetworkingError: Error {
+    /// Unknown error occurred.
+    case unknown
+
+    /// Response is not NSHTTPURLResponse
+    case nonHTTPResponse(response: URLResponse)
+
+    /// Response is not successful. (not in `200 ..< 300` range)
+    case httpRequestFailed(response: HTTPURLResponse, data: Data?)
+
+    /// Deserialization error.
+    case deserializationError(error: Error)
+
+    /// Request is not a valid URLRequest
+    case invalidURLRequest
+
+    /// Error for http request with missing payload
+    case missingPayload
+
+    /// No response parser found
+    case missingResponseParser
+
+    var statusCode: Int? {
+        switch self {
+        case let .httpRequestFailed(response, data):
+            return response.statusCode
+        default:
+            return nil
+        }
+    }
+}

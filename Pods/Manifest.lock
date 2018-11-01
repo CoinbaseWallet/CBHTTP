@@ -1,0 +1,50 @@
+PODS:
+  - Nimble (7.3.1)
+  - OHHTTPStubs/Core (6.1.0)
+  - OHHTTPStubs/Default (6.1.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (6.1.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (6.1.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (6.1.0)
+  - OHHTTPStubs/Swift (6.1.0):
+    - OHHTTPStubs/Default
+  - Quick (1.3.2)
+  - RxBlocking (4.3.1):
+    - RxSwift (~> 4.0)
+  - RxCocoa (4.3.1):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.3.1)
+
+DEPENDENCIES:
+  - Nimble (~> 7.3.1)
+  - OHHTTPStubs/Swift
+  - Quick (~> 1.3.2)
+  - RxBlocking (~> 4.3.1)
+  - RxCocoa (~> 4.3.1)
+  - RxSwift (~> 4.3.1)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Nimble
+    - OHHTTPStubs
+    - Quick
+    - RxBlocking
+    - RxCocoa
+    - RxSwift
+
+SPEC CHECKSUMS:
+  Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
+  OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
+  Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
+  RxBlocking: 64c051285261ca2339481e91b5f70eb06b03660a
+  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
+  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
+
+PODFILE CHECKSUM: 7893194daae71b9d6eba8e237900a92adc2565db
+
+COCOAPODS: 1.5.3
