@@ -1,9 +1,9 @@
 // Copyright (c) 2017-2018 Coinbase Inc. See LICENSE
 
+@testable import CBHTTP
 import OHHTTPStubs
 import RxBlocking
 import RxSwift
-@testable import CBHTTP
 import XCTest
 
 let unitTestsTimeout: RxTimeInterval = 3

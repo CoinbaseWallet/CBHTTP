@@ -13,11 +13,15 @@ public struct HTTP {
         return operationQueue
     }()
 
-    private static var session = URLSession(
-        configuration: HTTP.configuration,
-        delegate: nil,
-        delegateQueue: HTTP.executionOperationQueue
-    )
+    private static var session: URLSession = {
+        Logging.URLRequests = { _ in false }
+
+        return URLSession(
+            configuration: HTTP.configuration,
+            delegate: nil,
+            delegateQueue: HTTP.executionOperationQueue
+        )
+    }()
 
     /// Default timeout
     public static let kDefaultTimeout: TimeInterval = 15
@@ -91,7 +95,6 @@ public struct HTTP {
         let method = httpRequest.method.rawValue.uppercased()
         let path = httpRequest.path
 
-        print("method: \(method)")
         guard let urlRequest = httpRequest.asURLRequest else {
             print("[networking]: \(method) \(httpRequest.path) is an invalid request")
             return .error(NetworkingError.invalidURLRequest)
