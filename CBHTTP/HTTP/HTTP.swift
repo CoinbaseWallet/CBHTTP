@@ -63,7 +63,7 @@ public struct HTTP {
     ///     - timeout: How many seconds before the request times out. Defaults to 15.0
     ///
     /// - Returns: An Single with reponse `Data` for the HTTP request
-    static func upload(
+    public static func upload(
         data: Data,
         service: HTTPService,
         method: HTTPMethod,

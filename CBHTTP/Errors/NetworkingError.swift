@@ -24,9 +24,9 @@ public enum NetworkingError: Error {
     /// No response parser found
     case missingResponseParser
 
-    var statusCode: Int? {
+    public var statusCode: Int? {
         switch self {
-        case let .httpRequestFailed(response, data):
+        case let .httpRequestFailed(response, _):
             return response.statusCode
         default:
             return nil

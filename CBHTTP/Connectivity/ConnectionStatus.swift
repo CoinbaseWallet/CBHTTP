@@ -14,7 +14,7 @@ public enum ConnectionStatus: Equatable {
     case unknown
 
     /// Network is online
-    var isOnline: Bool {
+    public var isOnline: Bool {
         guard case .connected = self else { return false }
         return true
     }
