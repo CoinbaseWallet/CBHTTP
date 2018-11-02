@@ -19,6 +19,7 @@ PODS:
   - RxCocoa (4.3.1):
     - RxSwift (~> 4.0)
   - RxSwift (4.3.1)
+  - Starscream (3.0.5)
 
 DEPENDENCIES:
   - Nimble (~> 7.3.1)
@@ -27,6 +28,7 @@ DEPENDENCIES:
   - RxBlocking (~> 4.3.1)
   - RxCocoa (~> 4.3.1)
   - RxSwift (~> 4.3.1)
+  - Starscream (~> 3.0.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -36,6 +38,7 @@ SPEC REPOS:
     - RxBlocking
     - RxCocoa
     - RxSwift
+    - Starscream
 
 SPEC CHECKSUMS:
   Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
@@ -44,7 +47,8 @@ SPEC CHECKSUMS:
   RxBlocking: 64c051285261ca2339481e91b5f70eb06b03660a
   RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
+  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
 
-PODFILE CHECKSUM: 7893194daae71b9d6eba8e237900a92adc2565db
+PODFILE CHECKSUM: 9f2d25dd2c9a8bf7af3e3e85ed7e51712b03b738
 
 COCOAPODS: 1.5.3

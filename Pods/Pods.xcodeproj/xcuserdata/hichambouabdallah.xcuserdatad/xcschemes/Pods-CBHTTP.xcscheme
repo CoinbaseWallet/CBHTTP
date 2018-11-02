@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CE635F67414DD7AC879244EB42646279"
+               BlueprintIdentifier = "5F12522A27334F2BB0310A05D4841C28"
                BuildableName = "Pods_CBHTTP.framework"
                BlueprintName = "Pods-CBHTTP"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CE635F67414DD7AC879244EB42646279"
+            BlueprintIdentifier = "5F12522A27334F2BB0310A05D4841C28"
             BuildableName = "Pods_CBHTTP.framework"
             BlueprintName = "Pods-CBHTTP"
             ReferencedContainer = "container:Pods.xcodeproj">

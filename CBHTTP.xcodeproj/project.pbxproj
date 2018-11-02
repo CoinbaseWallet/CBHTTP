@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0077DB231B203B68D912D1AD /* Pods_CBHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B747DA8D8D97B6F6D7008DE8 /* Pods_CBHTTP.framework */; };
 		0D476D5B196136419B7BF360 /* Pods_CBHTTPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA6C206306FBFFD4D382958 /* Pods_CBHTTPTests.framework */; };
+		E7779096218C8C4200A9260C /* HTTPWebSocketIncomingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7779095218C8C4200A9260C /* HTTPWebSocketIncomingDataType.swift */; };
+		E7779098218C8C9A00A9260C /* HTTPWebSocketConnectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7779097218C8C9A00A9260C /* HTTPWebSocketConnectionState.swift */; };
+		E777909A218C8E1A00A9260C /* HTTPWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7779099218C8E1A00A9260C /* HTTPWebSocket.swift */; };
 		E7E36C71218B62F9005F7DC6 /* CBHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E36C67218B62F9005F7DC6 /* CBHTTP.framework */; };
 		E7E36C78218B62F9005F7DC6 /* CBHTTP.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E36C6A218B62F9005F7DC6 /* CBHTTP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7E36C93218B6386005F7DC6 /* SCNetworkReachabilityFlags+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E36C83218B6386005F7DC6 /* SCNetworkReachabilityFlags+Networking.swift */; };
@@ -43,6 +46,9 @@
 		927921F5535D8B589B38CDDA /* Pods-CBHTTPTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CBHTTPTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CBHTTPTests/Pods-CBHTTPTests.debug.xcconfig"; sourceTree = "<group>"; };
 		98CE786C630FB3C25AE16CFA /* Pods-CBHTTP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CBHTTP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CBHTTP/Pods-CBHTTP.debug.xcconfig"; sourceTree = "<group>"; };
 		B747DA8D8D97B6F6D7008DE8 /* Pods_CBHTTP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CBHTTP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7779095218C8C4200A9260C /* HTTPWebSocketIncomingDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPWebSocketIncomingDataType.swift; sourceTree = "<group>"; };
+		E7779097218C8C9A00A9260C /* HTTPWebSocketConnectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPWebSocketConnectionState.swift; sourceTree = "<group>"; };
+		E7779099218C8E1A00A9260C /* HTTPWebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPWebSocket.swift; sourceTree = "<group>"; };
 		E7E36C67218B62F9005F7DC6 /* CBHTTP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CBHTTP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7E36C6A218B62F9005F7DC6 /* CBHTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBHTTP.h; sourceTree = "<group>"; };
 		E7E36C6B218B62F9005F7DC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -106,6 +112,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E7779094218C8BD100A9260C /* WebSocket */ = {
+			isa = PBXGroup;
+			children = (
+				E7779095218C8C4200A9260C /* HTTPWebSocketIncomingDataType.swift */,
+				E7779097218C8C9A00A9260C /* HTTPWebSocketConnectionState.swift */,
+				E7779099218C8E1A00A9260C /* HTTPWebSocket.swift */,
+			);
+			path = WebSocket;
+			sourceTree = "<group>";
+		};
 		E7E36C5D218B62F9005F7DC6 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +145,7 @@
 		E7E36C69218B62F9005F7DC6 /* CBHTTP */ = {
 			isa = PBXGroup;
 			children = (
+				E7779094218C8BD100A9260C /* WebSocket */,
 				E7E36C88218B6386005F7DC6 /* Connectivity */,
 				E7E36C91218B6386005F7DC6 /* Errors */,
 				E7E36C82218B6386005F7DC6 /* Extensions */,
@@ -341,6 +358,7 @@
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -352,6 +370,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -392,6 +411,7 @@
 				E7E36C94218B6386005F7DC6 /* HTTP+Post.swift in Sources */,
 				E7E36C99218B6386005F7DC6 /* Internet.swift in Sources */,
 				E7E36C9D218B6386005F7DC6 /* HTTP.swift in Sources */,
+				E777909A218C8E1A00A9260C /* HTTPWebSocket.swift in Sources */,
 				E7E36C9F218B6386005F7DC6 /* NetworkingError.swift in Sources */,
 				E7E36C97218B6386005F7DC6 /* HTTP+Put.swift in Sources */,
 				E7E36C9A218B6386005F7DC6 /* ConnectionKind.swift in Sources */,
@@ -400,6 +420,8 @@
 				E7E36C9E218B6386005F7DC6 /* HTTPService.swift in Sources */,
 				E7E36C9C218B6386005F7DC6 /* HTTPMethod.swift in Sources */,
 				E7E36C98218B6386005F7DC6 /* ConnectionStatus.swift in Sources */,
+				E7779098218C8C9A00A9260C /* HTTPWebSocketConnectionState.swift in Sources */,
+				E7779096218C8C4200A9260C /* HTTPWebSocketIncomingDataType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
