@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.swift_version = '4.0'
   s.source_files = 'CBHTTP/**/*.swift'
 
-  s.dependency 'RxSwift', '~> 4.3.0'
-  s.dependency 'RxCocoa', '~> 4.3.0'
+  s.dependency 'RxSwift', '~> 4.4.0'
+  s.dependency 'RxCocoa', '~> 4.4.0'
   s.dependency 'Starscream', '~> 3.0.2'
 end

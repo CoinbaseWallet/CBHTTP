@@ -3,8 +3,8 @@ platform :ios, '10.0'
 target 'CBHTTP' do
   use_frameworks!
 
-  pod 'RxSwift', '~> 4.3.1'
-  pod 'RxCocoa', '~> 4.3.1'
+  pod 'RxSwift', '~> 4.4.0'
+  pod 'RxCocoa', '~> 4.4.0'
   pod 'Starscream', '~> 3.0.2'
 
   target 'CBHTTPTests' do
