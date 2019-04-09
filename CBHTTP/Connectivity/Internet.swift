@@ -40,14 +40,14 @@ public final class Internet {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(stop),
-            name: .UIApplicationWillResignActive,
+            name: UIApplication.willResignActiveNotification,
             object: nil
         )
 
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(start),
-            name: .UIApplicationDidBecomeActive,
+            name: UIApplication.didBecomeActiveNotification,
             object: nil
         )
     }
