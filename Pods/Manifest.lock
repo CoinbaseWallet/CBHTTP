@@ -21,7 +21,9 @@ PODS:
     - RxSwift (>= 4.4.2, ~> 4.4)
   - RxSwift (4.4.2):
     - RxAtomic (>= 4.4.2, ~> 4.4)
-  - Starscream (3.0.6)
+  - Socket.IO-Client-Swift (15.0.0):
+    - Starscream (~> 3.1)
+  - Starscream (3.1.0)
 
 DEPENDENCIES:
   - Nimble (~> 7.3.1)
@@ -30,7 +32,8 @@ DEPENDENCIES:
   - RxBlocking (~> 4.3.1)
   - RxCocoa (~> 4.4.0)
   - RxSwift (~> 4.4.0)
-  - Starscream (~> 3.0.2)
+  - Socket.IO-Client-Swift (~> 15.0.0)
+  - Starscream (~> 3.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -41,6 +44,7 @@ SPEC REPOS:
     - RxBlocking
     - RxCocoa
     - RxSwift
+    - Socket.IO-Client-Swift
     - Starscream
 
 SPEC CHECKSUMS:
@@ -51,8 +55,9 @@ SPEC CHECKSUMS:
   RxBlocking: 64c051285261ca2339481e91b5f70eb06b03660a
   RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
   RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
-  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+  Socket.IO-Client-Swift: c039a808195d22a7192962841b8c035cb61ea49e
+  Starscream: 08172b481e145289c4930cb567230fb55897cfa4
 
-PODFILE CHECKSUM: 3e40c161b21fd49e485edc547023929f17a54e17
+PODFILE CHECKSUM: eb08cd3fd7e358039796036bd0a8b467d543a048
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.0.beta.3

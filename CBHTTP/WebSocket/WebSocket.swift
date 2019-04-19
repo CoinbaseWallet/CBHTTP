@@ -4,10 +4,10 @@ import RxSwift
 import Starscream
 
 /// Represents an HTTP web socket
-public final class HTTPWebSocket: WebSocketDelegate {
-    private let socket: WebSocket
-    private let incomingSubject = PublishSubject<HTTPWebSocketIncomingDataType>()
-    private let connectionStateSubject = BehaviorSubject<HTTPWebSocketConnectionState>(value: .disconnected(nil))
+public final class WebSocket: WebSocketDelegate {
+    private let socket: Starscream.WebSocket
+    private let incomingSubject = PublishSubject<WebIncomingDataType>()
+    private let connectionStateSubject = BehaviorSubject<WebConnectionState>(value: .disconnected(nil))
     private let minReconnectDelay: TimeInterval
     private let maxReconnectDelay: TimeInterval
     private let connectionTimeout: TimeInterval
@@ -15,10 +15,10 @@ public final class HTTPWebSocket: WebSocketDelegate {
     private var reconnectAttempts: UInt64 = 0
 
     /// Observable for all incoming text or data messages
-    public let incomingObservable: Observable<HTTPWebSocketIncomingDataType>
+    public let incomingObservable: Observable<WebIncomingDataType>
 
     /// Observable for web socket connection state
-    public let connectionStateObservable: Observable<HTTPWebSocketConnectionState>
+    public let connectionStateObservable: Observable<WebConnectionState>
 
     /// Default constructor for given URL
     ///
@@ -33,7 +33,7 @@ public final class HTTPWebSocket: WebSocketDelegate {
         minReconnectDelay: TimeInterval = 1,
         maxReconnectDelay: TimeInterval = 5
     ) {
-        socket = WebSocket(url: url)
+        socket = Starscream.WebSocket(url: url)
         self.connectionTimeout = connectionTimeout
         self.minReconnectDelay = minReconnectDelay
         self.maxReconnectDelay = maxReconnectDelay
@@ -51,9 +51,8 @@ public final class HTTPWebSocket: WebSocketDelegate {
             return .just(())
         }
 
-        socket.connect()
-
         return connectionStateObservable
+            .do(onSubscribed: { [weak self] in self?.socket.connect() })
             .filter { $0.isConnected }
             .take(1)
             .asSingle()
@@ -69,9 +68,8 @@ public final class HTTPWebSocket: WebSocketDelegate {
 
         guard socket.isConnected else { return .just(()) }
 
-        socket.disconnect()
-
         return connectionStateObservable
+            .do(onSubscribed: { [weak self] in self?.socket.disconnect() })
             .filter { !$0.isConnected }
             .take(1)
             .asSingle()
@@ -84,20 +82,20 @@ public final class HTTPWebSocket: WebSocketDelegate {
     ///     - string: String-based message to send
     ///
     /// - Returns: A single wrapping `Void` fired when send request completes
-    public func send(string: String) -> Single<Void> {
+    public func sendString(_ string: String) -> Single<Void> {
         return Single.create { observer -> Disposable in
             self.socket.write(string: string) { observer(.success(())) }
             return Disposables.create()
         }
     }
 
-    /// Send string-based message to server
+    /// Send data-based message to server
     ///
     /// - Parameters:
     ///     - string: Data-based message to send
     ///
     /// - Returns: A single wrapping `Void` fired when send request completes
-    public func send(data: Data) -> Single<Void> {
+    public func sendData(_ data: Data) -> Single<Void> {
         return Single.create { observer -> Disposable in
             self.socket.write(data: data) { observer(.success(())) }
             return Disposables.create()
