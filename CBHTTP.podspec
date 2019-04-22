@@ -16,5 +16,6 @@ Pod::Spec.new do |s|
 
   s.dependency 'RxSwift', '~> 4.4.0'
   s.dependency 'RxCocoa', '~> 4.4.0'
-  s.dependency 'Starscream', '~> 3.0.2'
+  s.dependency 'Starscream', '~> 3.1'
+  s.dependency 'Socket.IO-Client-Swift', '~> 15.0.0'
 end

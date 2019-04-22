@@ -2,8 +2,8 @@
 
 import Foundation
 
-/// Represents data type received via web socket
-public enum HTTPWebSocketIncomingDataType {
+/// Represents data type received via web live connection
+public enum WebIncomingDataType {
     /// Text message received from server
     case string(String)
 

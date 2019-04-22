@@ -2,15 +2,15 @@
 
 import Foundation
 
-/// Represents connection state of the web socket
-public enum HTTPWebSocketConnectionState {
-    /// The websocket is not currently connected
+/// Represents connection state of any web connection
+public enum WebConnectionState {
+    /// The connection is not currently live
     case disconnected(Error?)
 
-    /// A websocket connection is currently live
+    /// The connection is currently live
     case connected
 
-    /// Determine whether socket is connected
+    /// Determine whether connection is live
     var isConnected: Bool {
         guard case .connected = self else { return false }
 

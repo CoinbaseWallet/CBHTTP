@@ -41,7 +41,7 @@ public struct HTTP {
             do {
                 let parsed: T = try responseParser(result.data)
                 return .just(parsed)
-            } catch let error {
+            } catch {
                 throw NetworkingError.deserializationError(error: error)
             }
         }
