@@ -13,6 +13,7 @@ public final class WebSocket: WebSocketDelegate {
     private let connectionTimeout: TimeInterval
     private var isAutoReconnectEnabled = false
     private var reconnectAttempts: UInt64 = 0
+    private var heartbeatDisposeBag = DisposeBag()
 
     /// Observable for all incoming text or data messages
     public let incomingObservable: Observable<WebIncomingDataType>
@@ -111,9 +112,11 @@ public final class WebSocket: WebSocketDelegate {
     public func websocketDidConnect(socket _: WebSocketClient) {
         reconnectAttempts = 0
         connectionStateSubject.onNext(.connected)
+        startHeartbeat()
     }
 
     public func websocketDidDisconnect(socket _: WebSocketClient, error: Error?) {
+        stopHeartbeat()
         connectionStateSubject.onNext(.disconnected(error))
 
         if isAutoReconnectEnabled {
@@ -137,5 +140,18 @@ public final class WebSocket: WebSocketDelegate {
 
     public func websocketDidReceiveData(socket _: WebSocketClient, data: Data) {
         incomingSubject.onNext(.data(data))
+    }
+
+    // MARK: - Heartbeats
+
+    private func startHeartbeat() {
+        Observable<Int>.interval(10, scheduler: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+            .startWith(0)
+            .subscribe(onNext: { [weak self] _ in self?.socket.write(ping: Data()) })
+            .disposed(by: heartbeatDisposeBag)
+    }
+
+    private func stopHeartbeat() {
+        heartbeatDisposeBag = DisposeBag()
     }
 }
