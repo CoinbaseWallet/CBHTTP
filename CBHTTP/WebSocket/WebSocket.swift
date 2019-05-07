@@ -34,13 +34,16 @@ public final class WebSocket: WebSocketDelegate {
         minReconnectDelay: TimeInterval = 1,
         maxReconnectDelay: TimeInterval = 5
     ) {
-        socket = Starscream.WebSocket(url: url)
         self.connectionTimeout = connectionTimeout
         self.minReconnectDelay = minReconnectDelay
         self.maxReconnectDelay = maxReconnectDelay
+
         incomingObservable = incomingSubject.asObservable()
         connectionStateObservable = connectionStateSubject.asObservable()
+
+        socket = Starscream.WebSocket(url: url)
         socket.delegate = self
+        socket.callbackQueue = DispatchQueue(label: "WebSocket.socket.callbackQueue")
     }
 
     /// Connect to given web socket
