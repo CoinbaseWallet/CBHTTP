@@ -117,7 +117,7 @@ public final class SocketIOConnection {
                 let result: WebIncomingDataType
 
                 if let string = data.first as? String {
-                    result = .string(string)
+                    result = .text(string)
                 } else if let bytes = data.first as? Data {
                     result = .data(bytes)
                 } else {

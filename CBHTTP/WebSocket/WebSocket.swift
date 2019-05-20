@@ -5,16 +5,20 @@ import Starscream
 
 /// Represents an HTTP web socket
 public final class WebSocket: WebSocketDelegate {
-    private let isConnectedAccessQueue = DispatchQueue(label: "WebSocket.isConnectedAccessQueue")
+    private let accessQueue = DispatchQueue(label: "CBHTTP.WebSocket.accessQueue")
     private let socket: Starscream.WebSocket
     private let incomingSubject = PublishSubject<WebIncomingDataType>()
     private let connectionStateSubject = BehaviorSubject<WebConnectionState>(value: .disconnected(nil))
     private let minReconnectDelay: TimeInterval
     private let maxReconnectDelay: TimeInterval
     private let connectionTimeout: TimeInterval
-    private var isAutoReconnectEnabled = false
+    private var isManualClose = false
     private var reconnectAttempts: UInt64 = 0
     private var heartbeatDisposeBag = DisposeBag()
+    private lazy var serialScheduler = SerialDispatchQueueScheduler(
+        queue: self.accessQueue,
+        internalSerialQueueName: "CBHTTP.WebSocket.serialScheduler"
+    )
 
     /// Observable for all incoming text or data messages
     public let incomingObservable: Observable<WebIncomingDataType>
@@ -56,9 +60,9 @@ public final class WebSocket: WebSocketDelegate {
     public func connect() -> Single<Void> {
         var isCurrentlyConnected = false
 
-        isConnectedAccessQueue.sync {
+        accessQueue.sync {
             isCurrentlyConnected = self.isConnected
-            self.isAutoReconnectEnabled = true
+            self.isManualClose = false
         }
 
         if isCurrentlyConnected {
@@ -80,9 +84,9 @@ public final class WebSocket: WebSocketDelegate {
     public func disconnect() -> Single<Void> {
         var isCurrentlyConnected = false
 
-        isConnectedAccessQueue.sync {
+        accessQueue.sync {
             isCurrentlyConnected = self.isConnected
-            self.isAutoReconnectEnabled = false
+            self.isManualClose = true
         }
 
         guard isCurrentlyConnected else { return .just(()) }
@@ -128,40 +132,61 @@ public final class WebSocket: WebSocketDelegate {
     // MARK: - WebSocketDelegate
 
     public func websocketDidConnect(socket _: WebSocketClient) {
-        isConnectedAccessQueue.sync { self.isConnected = true }
-        reconnectAttempts = 0
+        var isManualClose = false
+
+        accessQueue.sync {
+            isManualClose = self.isManualClose
+
+            self.isConnected = true
+            self.reconnectAttempts = 0
+            self.startHeartbeat()
+        }
+
         connectionStateSubject.onNext(.connected)
-        startHeartbeat()
+
+        // check if the connection was manually closed. If so, force a disconnect
+        if isManualClose {
+            socket.disconnect()
+        }
     }
 
     public func websocketDidDisconnect(socket _: WebSocketClient, error: Error?) {
-        var isAutoReconnectEnabled = false
+        var isManualClose = false
+        var delay: TimeInterval = 0
 
-        isConnectedAccessQueue.sync {
+        accessQueue.sync {
+            isManualClose = self.isManualClose
+
+            self.reconnectAttempts += 1
+
+            delay = min(self.minReconnectDelay * TimeInterval(self.reconnectAttempts), self.maxReconnectDelay)
+
             self.isConnected = false
-            isAutoReconnectEnabled = self.isAutoReconnectEnabled
+            self.stopHeartbeat()
         }
 
-        stopHeartbeat()
         connectionStateSubject.onNext(.disconnected(error))
 
-        if isAutoReconnectEnabled {
-            reconnectAttempts += 1
-
-            let delay = min(minReconnectDelay * TimeInterval(reconnectAttempts), maxReconnectDelay)
-
+        // check if the connection was manually re-established. If so, make sure we reconnect.
+        if !isManualClose {
             _ = Internet.statusChanges
                 .filter { $0.isOnline }
                 .take(1)
-                .delay(RxTimeInterval(delay), scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
-                .map { [weak self] _ in self?.socket.connect() }
+                .delay(RxTimeInterval(delay), scheduler: serialScheduler)
+                .map { [weak self] _ in
+                    if self?.isManualClose == true {
+                        self?.socket.disconnect()
+                    } else {
+                        self?.socket.connect()
+                    }
+                }
                 .asSingle()
                 .subscribe()
         }
     }
 
     public func websocketDidReceiveMessage(socket _: WebSocketClient, text: String) {
-        incomingSubject.onNext(.string(text))
+        incomingSubject.onNext(.text(text))
     }
 
     public func websocketDidReceiveData(socket _: WebSocketClient, data: Data) {
@@ -172,7 +197,6 @@ public final class WebSocket: WebSocketDelegate {
 
     private func startHeartbeat() {
         Observable<Int>.interval(10, scheduler: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
-            .startWith(0)
             .subscribe(onNext: { [weak self] _ in self?.socket.write(ping: Data()) })
             .disposed(by: heartbeatDisposeBag)
     }

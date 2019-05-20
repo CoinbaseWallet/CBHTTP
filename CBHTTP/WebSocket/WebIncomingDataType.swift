@@ -5,7 +5,7 @@ import Foundation
 /// Represents data type received via web live connection
 public enum WebIncomingDataType {
     /// Text message received from server
-    case string(String)
+    case text(String)
 
     /// Data message received from server
     case data(Data)
