@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0077DB231B203B68D912D1AD /* Pods_CBHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B747DA8D8D97B6F6D7008DE8 /* Pods_CBHTTP.framework */; };
-		0D476D5B196136419B7BF360 /* Pods_CBHTTPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA6C206306FBFFD4D382958 /* Pods_CBHTTPTests.framework */; };
 		5122B404226A33D0009A6694 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5122B403226A33D0009A6694 /* WebSocket.swift */; };
+		53D14815A47FF8203ECA1722 /* Pods_CBHTTPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA6C206306FBFFD4D382958 /* Pods_CBHTTPTests.framework */; };
+		AB3B00322294A9A300F5CFDB /* CBHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E36C67218B62F9005F7DC6 /* CBHTTP.framework */; };
+		AB3B00382294AA9300F5CFDB /* CBHTTPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E36CA0218B64BF005F7DC6 /* CBHTTPTests.swift */; };
 		E7779096218C8C4200A9260C /* WebIncomingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7779095218C8C4200A9260C /* WebIncomingDataType.swift */; };
 		E7779098218C8C9A00A9260C /* WebConnectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7779097218C8C9A00A9260C /* WebConnectionState.swift */; };
-		E7E36C71218B62F9005F7DC6 /* CBHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E36C67218B62F9005F7DC6 /* CBHTTP.framework */; };
 		E7E36C78218B62F9005F7DC6 /* CBHTTP.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E36C6A218B62F9005F7DC6 /* CBHTTP.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7E36C93218B6386005F7DC6 /* SCNetworkReachabilityFlags+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E36C83218B6386005F7DC6 /* SCNetworkReachabilityFlags+Networking.swift */; };
 		E7E36C94218B6386005F7DC6 /* HTTP+Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E36C84218B6386005F7DC6 /* HTTP+Post.swift */; };
@@ -26,12 +27,11 @@
 		E7E36C9C218B6386005F7DC6 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E36C8E218B6386005F7DC6 /* HTTPMethod.swift */; };
 		E7E36C9D218B6386005F7DC6 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E36C8F218B6386005F7DC6 /* HTTP.swift */; };
 		E7E36C9E218B6386005F7DC6 /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E36C90218B6386005F7DC6 /* HTTPService.swift */; };
-		E7E36C9F218B6386005F7DC6 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E36C92218B6386005F7DC6 /* NetworkingError.swift */; };
-		E7E36CA1218B64BF005F7DC6 /* CBHTTPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E36CA0218B64BF005F7DC6 /* CBHTTPTests.swift */; };
+		E7E36C9F218B6386005F7DC6 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E36C92218B6386005F7DC6 /* HTTPError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E7E36C72218B62F9005F7DC6 /* PBXContainerItemProxy */ = {
+		AB3B00332294A9A300F5CFDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E7E36C5E218B62F9005F7DC6 /* Project object */;
 			proxyType = 1;
@@ -46,13 +46,13 @@
 		7642CF668635CF804C60D6AE /* Pods-CBHTTP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CBHTTP.release.xcconfig"; path = "Pods/Target Support Files/Pods-CBHTTP/Pods-CBHTTP.release.xcconfig"; sourceTree = "<group>"; };
 		927921F5535D8B589B38CDDA /* Pods-CBHTTPTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CBHTTPTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CBHTTPTests/Pods-CBHTTPTests.debug.xcconfig"; sourceTree = "<group>"; };
 		98CE786C630FB3C25AE16CFA /* Pods-CBHTTP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CBHTTP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CBHTTP/Pods-CBHTTP.debug.xcconfig"; sourceTree = "<group>"; };
+		AB3B002D2294A9A300F5CFDB /* CBHTTPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CBHTTPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B747DA8D8D97B6F6D7008DE8 /* Pods_CBHTTP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CBHTTP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7779095218C8C4200A9260C /* WebIncomingDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebIncomingDataType.swift; sourceTree = "<group>"; };
 		E7779097218C8C9A00A9260C /* WebConnectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebConnectionState.swift; sourceTree = "<group>"; };
 		E7E36C67218B62F9005F7DC6 /* CBHTTP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CBHTTP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7E36C6A218B62F9005F7DC6 /* CBHTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBHTTP.h; sourceTree = "<group>"; };
 		E7E36C6B218B62F9005F7DC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E7E36C70218B62F9005F7DC6 /* CBHTTPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CBHTTPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7E36C77218B62F9005F7DC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7E36C83218B6386005F7DC6 /* SCNetworkReachabilityFlags+Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNetworkReachabilityFlags+Networking.swift"; sourceTree = "<group>"; };
 		E7E36C84218B6386005F7DC6 /* HTTP+Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HTTP+Post.swift"; sourceTree = "<group>"; };
@@ -66,26 +66,26 @@
 		E7E36C8E218B6386005F7DC6 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		E7E36C8F218B6386005F7DC6 /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 		E7E36C90218B6386005F7DC6 /* HTTPService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
-		E7E36C92218B6386005F7DC6 /* NetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
+		E7E36C92218B6386005F7DC6 /* HTTPError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
 		E7E36CA0218B64BF005F7DC6 /* CBHTTPTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBHTTPTests.swift; sourceTree = "<group>"; };
 		EEA6C206306FBFFD4D382958 /* Pods_CBHTTPTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CBHTTPTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AB3B002A2294A9A300F5CFDB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB3B00322294A9A300F5CFDB /* CBHTTP.framework in Frameworks */,
+				53D14815A47FF8203ECA1722 /* Pods_CBHTTPTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7E36C64218B62F9005F7DC6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				0077DB231B203B68D912D1AD /* Pods_CBHTTP.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E7E36C6D218B62F9005F7DC6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E7E36C71218B62F9005F7DC6 /* CBHTTP.framework in Frameworks */,
-				0D476D5B196136419B7BF360 /* Pods_CBHTTPTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				E7E36C67218B62F9005F7DC6 /* CBHTTP.framework */,
-				E7E36C70218B62F9005F7DC6 /* CBHTTPTests.xctest */,
+				AB3B002D2294A9A300F5CFDB /* CBHTTPTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -209,7 +209,7 @@
 		E7E36C91218B6386005F7DC6 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
-				E7E36C92218B6386005F7DC6 /* NetworkingError.swift */,
+				E7E36C92218B6386005F7DC6 /* HTTPError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -228,6 +228,26 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		AB3B002C2294A9A300F5CFDB /* CBHTTPTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB3B00352294A9A300F5CFDB /* Build configuration list for PBXNativeTarget "CBHTTPTests" */;
+			buildPhases = (
+				63060492343B96E83BD20665 /* [CP] Check Pods Manifest.lock */,
+				AB3B00292294A9A300F5CFDB /* Sources */,
+				AB3B002A2294A9A300F5CFDB /* Frameworks */,
+				AB3B002B2294A9A300F5CFDB /* Resources */,
+				517901C4842DEFF7F93CF56E /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AB3B00342294A9A300F5CFDB /* PBXTargetDependency */,
+			);
+			name = CBHTTPTests;
+			productName = CBHTTPTests;
+			productReference = AB3B002D2294A9A300F5CFDB /* CBHTTPTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		E7E36C66218B62F9005F7DC6 /* CBHTTP */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E7E36C7B218B62F9005F7DC6 /* Build configuration list for PBXNativeTarget "CBHTTP" */;
@@ -247,41 +267,20 @@
 			productReference = E7E36C67218B62F9005F7DC6 /* CBHTTP.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		E7E36C6F218B62F9005F7DC6 /* CBHTTPTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E7E36C7E218B62F9005F7DC6 /* Build configuration list for PBXNativeTarget "CBHTTPTests" */;
-			buildPhases = (
-				E6BF751916BD4B192F4D460A /* [CP] Check Pods Manifest.lock */,
-				E7E36C6C218B62F9005F7DC6 /* Sources */,
-				E7E36C6D218B62F9005F7DC6 /* Frameworks */,
-				E7E36C6E218B62F9005F7DC6 /* Resources */,
-				84EF2FB9E1551D2B475CEFEE /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E7E36C73218B62F9005F7DC6 /* PBXTargetDependency */,
-			);
-			name = CBHTTPTests;
-			productName = CBHTTPTests;
-			productReference = E7E36C70218B62F9005F7DC6 /* CBHTTPTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		E7E36C5E218B62F9005F7DC6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1000;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Coinbase Inc";
 				TargetAttributes = {
-					E7E36C66218B62F9005F7DC6 = {
-						CreatedOnToolsVersion = 10.0;
-						LastSwiftMigration = 1010;
+					AB3B002C2294A9A300F5CFDB = {
+						CreatedOnToolsVersion = 10.2.1;
 					};
-					E7E36C6F218B62F9005F7DC6 = {
+					E7E36C66218B62F9005F7DC6 = {
 						CreatedOnToolsVersion = 10.0;
 						LastSwiftMigration = 1010;
 					};
@@ -300,20 +299,20 @@
 			projectRoot = "";
 			targets = (
 				E7E36C66218B62F9005F7DC6 /* CBHTTP */,
-				E7E36C6F218B62F9005F7DC6 /* CBHTTPTests */,
+				AB3B002C2294A9A300F5CFDB /* CBHTTPTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E7E36C65218B62F9005F7DC6 /* Resources */ = {
+		AB3B002B2294A9A300F5CFDB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E7E36C6E218B62F9005F7DC6 /* Resources */ = {
+		E7E36C65218B62F9005F7DC6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -345,7 +344,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		84EF2FB9E1551D2B475CEFEE /* [CP] Embed Pods Frameworks */ = {
+		517901C4842DEFF7F93CF56E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -362,7 +361,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CBHTTPTests/Pods-CBHTTPTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E6BF751916BD4B192F4D460A /* [CP] Check Pods Manifest.lock */ = {
+		63060492343B96E83BD20665 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -387,6 +386,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AB3B00292294A9A300F5CFDB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB3B00382294AA9300F5CFDB /* CBHTTPTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7E36C63218B62F9005F7DC6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -396,7 +403,7 @@
 				E7E36C94218B6386005F7DC6 /* HTTP+Post.swift in Sources */,
 				E7E36C99218B6386005F7DC6 /* Internet.swift in Sources */,
 				E7E36C9D218B6386005F7DC6 /* HTTP.swift in Sources */,
-				E7E36C9F218B6386005F7DC6 /* NetworkingError.swift in Sources */,
+				E7E36C9F218B6386005F7DC6 /* HTTPError.swift in Sources */,
 				E7E36C97218B6386005F7DC6 /* HTTP+Put.swift in Sources */,
 				5122B404226A33D0009A6694 /* WebSocket.swift in Sources */,
 				E7E36C9A218B6386005F7DC6 /* ConnectionKind.swift in Sources */,
@@ -410,25 +417,55 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E7E36C6C218B62F9005F7DC6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E7E36CA1218B64BF005F7DC6 /* CBHTTPTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E7E36C73218B62F9005F7DC6 /* PBXTargetDependency */ = {
+		AB3B00342294A9A300F5CFDB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E7E36C66218B62F9005F7DC6 /* CBHTTP */;
-			targetProxy = E7E36C72218B62F9005F7DC6 /* PBXContainerItemProxy */;
+			targetProxy = AB3B00332294A9A300F5CFDB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		AB3B00362294A9A300F5CFDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 927921F5535D8B589B38CDDA /* Pods-CBHTTPTests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = CBHTTPTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.wallet.CBHTTPTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AB3B00372294A9A300F5CFDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0637C744A4C41B4F7A2EAF92 /* Pods-CBHTTPTests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = CBHTTPTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.wallet.CBHTTPTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		E7E36C79218B62F9005F7DC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -607,47 +644,18 @@
 			};
 			name = Release;
 		};
-		E7E36C7F218B62F9005F7DC6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 927921F5535D8B589B38CDDA /* Pods-CBHTTPTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CBHTTPTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.wallet.http.CBHTTPTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		E7E36C80218B62F9005F7DC6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0637C744A4C41B4F7A2EAF92 /* Pods-CBHTTPTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CBHTTPTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.wallet.http.CBHTTPTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AB3B00352294A9A300F5CFDB /* Build configuration list for PBXNativeTarget "CBHTTPTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB3B00362294A9A300F5CFDB /* Debug */,
+				AB3B00372294A9A300F5CFDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E7E36C61218B62F9005F7DC6 /* Build configuration list for PBXProject "CBHTTP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -662,15 +670,6 @@
 			buildConfigurations = (
 				E7E36C7C218B62F9005F7DC6 /* Debug */,
 				E7E36C7D218B62F9005F7DC6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E7E36C7E218B62F9005F7DC6 /* Build configuration list for PBXNativeTarget "CBHTTPTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E7E36C7F218B62F9005F7DC6 /* Debug */,
-				E7E36C80218B62F9005F7DC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

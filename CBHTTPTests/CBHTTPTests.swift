@@ -8,7 +8,7 @@ import XCTest
 
 let unitTestsTimeout: RxTimeInterval = 3
 
-class HTTPTests: XCTestCase {
+class CBHTTPTests: XCTestCase {
     override func tearDown() {
         OHHTTPStubs.removeAllStubs()
         super.tearDown()
