@@ -127,7 +127,7 @@ extension HTTPRequest where T: Decodable {
             headers: headers,
             timeout: timeout
         ) { data in
-            guard let data = data else { throw NetworkingError.missingPayload }
+            guard let data = data else { throw HTTPError.missingPayload }
             return try JSONDecoder().decode(responseType, from: data) as T
         }
     }

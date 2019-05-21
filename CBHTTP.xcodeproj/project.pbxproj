@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,7 +27,7 @@
 		E7E36C9C218B6386005F7DC6 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E36C8E218B6386005F7DC6 /* HTTPMethod.swift */; };
 		E7E36C9D218B6386005F7DC6 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E36C8F218B6386005F7DC6 /* HTTP.swift */; };
 		E7E36C9E218B6386005F7DC6 /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E36C90218B6386005F7DC6 /* HTTPService.swift */; };
-		E7E36C9F218B6386005F7DC6 /* HTTPNetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E36C92218B6386005F7DC6 /* HTTPNetworkingError.swift */; };
+		E7E36C9F218B6386005F7DC6 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E36C92218B6386005F7DC6 /* HTTPError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +66,7 @@
 		E7E36C8E218B6386005F7DC6 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		E7E36C8F218B6386005F7DC6 /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 		E7E36C90218B6386005F7DC6 /* HTTPService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
-		E7E36C92218B6386005F7DC6 /* HTTPNetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPNetworkingError.swift; sourceTree = "<group>"; };
+		E7E36C92218B6386005F7DC6 /* HTTPError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
 		E7E36CA0218B64BF005F7DC6 /* CBHTTPTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBHTTPTests.swift; sourceTree = "<group>"; };
 		EEA6C206306FBFFD4D382958 /* Pods_CBHTTPTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CBHTTPTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -209,7 +209,7 @@
 		E7E36C91218B6386005F7DC6 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
-				E7E36C92218B6386005F7DC6 /* HTTPNetworkingError.swift */,
+				E7E36C92218B6386005F7DC6 /* HTTPError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -403,7 +403,7 @@
 				E7E36C94218B6386005F7DC6 /* HTTP+Post.swift in Sources */,
 				E7E36C99218B6386005F7DC6 /* Internet.swift in Sources */,
 				E7E36C9D218B6386005F7DC6 /* HTTP.swift in Sources */,
-				E7E36C9F218B6386005F7DC6 /* HTTPNetworkingError.swift in Sources */,
+				E7E36C9F218B6386005F7DC6 /* HTTPError.swift in Sources */,
 				E7E36C97218B6386005F7DC6 /* HTTP+Put.swift in Sources */,
 				5122B404226A33D0009A6694 /* WebSocket.swift in Sources */,
 				E7E36C9A218B6386005F7DC6 /* ConnectionKind.swift in Sources */,

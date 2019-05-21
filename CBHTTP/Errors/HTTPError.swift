@@ -2,7 +2,7 @@
 
 import Foundation
 
-public enum NetworkingError: Error {
+public enum HTTPError: Error {
     /// Unknown error occurred.
     case unknown
 

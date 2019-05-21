@@ -34,7 +34,7 @@ public struct HTTP {
     /// - Returns: An Single for the HTTP request
     static func makeDecodableRequest<T>(request: HTTPRequest<T>) -> Single<T> {
         guard let responseParser = request.responseParser else {
-            return .error(NetworkingError.missingResponseParser)
+            return .error(HTTPError.missingResponseParser)
         }
 
         return task(for: request).flatMap { result in
@@ -42,7 +42,7 @@ public struct HTTP {
                 let parsed: T = try responseParser(result.data)
                 return .just(parsed)
             } catch {
-                throw NetworkingError.deserializationError(error: error)
+                throw HTTPError.deserializationError(error: error)
             }
         }
     }
@@ -97,7 +97,7 @@ public struct HTTP {
 
         guard let urlRequest = httpRequest.asURLRequest else {
             print("[networking]: \(method) \(httpRequest.path) is an invalid request")
-            return .error(NetworkingError.invalidURLRequest)
+            return .error(HTTPError.invalidURLRequest)
         }
 
         return session.rx.response(request: urlRequest)
@@ -121,16 +121,16 @@ public struct HTTP {
                 switch err {
                 case .unknown:
                     print("[networking]: \(method) \(path) [unknown error] \(err)")
-                    throw NetworkingError.unknown
+                    throw HTTPError.unknown
                 case let .nonHTTPResponse(response):
                     print("[networking]: \(method) \(path) [non http response \(response)] \(err)")
-                    throw NetworkingError.nonHTTPResponse(response: response)
+                    throw HTTPError.nonHTTPResponse(response: response)
                 case let .httpRequestFailed(response, data):
                     print("[networking]: \(method) \(path) [\(response.statusCode)] \(err)")
-                    throw NetworkingError.httpRequestFailed(response: response, data: data)
+                    throw HTTPError.httpRequestFailed(response: response, data: data)
                 case let .deserializationError(error):
                     print("[networking]: \(method) \(path) [deserialization error] \(err)")
-                    throw NetworkingError.deserializationError(error: error)
+                    throw HTTPError.deserializationError(error: error)
                 }
             }
     }
