@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		0077DB231B203B68D912D1AD /* Pods_CBHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B747DA8D8D97B6F6D7008DE8 /* Pods_CBHTTP.framework */; };
 		0D476D5B196136419B7BF360 /* Pods_CBHTTPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA6C206306FBFFD4D382958 /* Pods_CBHTTPTests.framework */; };
-		5122B400226A2929009A6694 /* SocketIOConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5122B3FF226A2929009A6694 /* SocketIOConnection.swift */; };
-		5122B402226A330B009A6694 /* SocketIOResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5122B401226A330B009A6694 /* SocketIOResponse.swift */; };
 		5122B404226A33D0009A6694 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5122B403226A33D0009A6694 /* WebSocket.swift */; };
 		E7779096218C8C4200A9260C /* WebIncomingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7779095218C8C4200A9260C /* WebIncomingDataType.swift */; };
 		E7779098218C8C9A00A9260C /* WebConnectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7779097218C8C9A00A9260C /* WebConnectionState.swift */; };
@@ -44,8 +42,6 @@
 
 /* Begin PBXFileReference section */
 		0637C744A4C41B4F7A2EAF92 /* Pods-CBHTTPTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CBHTTPTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CBHTTPTests/Pods-CBHTTPTests.release.xcconfig"; sourceTree = "<group>"; };
-		5122B3FF226A2929009A6694 /* SocketIOConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOConnection.swift; sourceTree = "<group>"; };
-		5122B401226A330B009A6694 /* SocketIOResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOResponse.swift; sourceTree = "<group>"; };
 		5122B403226A33D0009A6694 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
 		7642CF668635CF804C60D6AE /* Pods-CBHTTP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CBHTTP.release.xcconfig"; path = "Pods/Target Support Files/Pods-CBHTTP/Pods-CBHTTP.release.xcconfig"; sourceTree = "<group>"; };
 		927921F5535D8B589B38CDDA /* Pods-CBHTTPTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CBHTTPTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CBHTTPTests/Pods-CBHTTPTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -96,15 +92,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5122B3FE226A1FD2009A6694 /* SocketIO */ = {
-			isa = PBXGroup;
-			children = (
-				5122B3FF226A2929009A6694 /* SocketIOConnection.swift */,
-				5122B401226A330B009A6694 /* SocketIOResponse.swift */,
-			);
-			path = SocketIO;
-			sourceTree = "<group>";
-		};
 		9ACB2DE8CFC33B5E6878EA96 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,7 +150,6 @@
 				E7E36C82218B6386005F7DC6 /* Extensions */,
 				E7E36C8C218B6386005F7DC6 /* HTTP */,
 				E7E36C81218B632E005F7DC6 /* Module */,
-				5122B3FE226A1FD2009A6694 /* SocketIO */,
 				E7779094218C8BD100A9260C /* WebSocket */,
 			);
 			path = CBHTTP;
@@ -413,7 +399,6 @@
 				E7E36C9F218B6386005F7DC6 /* NetworkingError.swift in Sources */,
 				E7E36C97218B6386005F7DC6 /* HTTP+Put.swift in Sources */,
 				5122B404226A33D0009A6694 /* WebSocket.swift in Sources */,
-				5122B400226A2929009A6694 /* SocketIOConnection.swift in Sources */,
 				E7E36C9A218B6386005F7DC6 /* ConnectionKind.swift in Sources */,
 				E7E36C9B218B6386005F7DC6 /* HTTPRequest.swift in Sources */,
 				E7E36C95218B6386005F7DC6 /* HTTP+Delete.swift in Sources */,
@@ -422,7 +407,6 @@
 				E7E36C98218B6386005F7DC6 /* ConnectionStatus.swift in Sources */,
 				E7779098218C8C9A00A9260C /* WebConnectionState.swift in Sources */,
 				E7779096218C8C4200A9260C /* WebIncomingDataType.swift in Sources */,
-				5122B402226A330B009A6694 /* SocketIOResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

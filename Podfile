@@ -6,7 +6,6 @@ target 'CBHTTP' do
   pod 'RxSwift', '~> 4.4.0'
   pod 'RxCocoa', '~> 4.4.0'
   pod 'Starscream', '~> 3.1'
-  pod 'Socket.IO-Client-Swift', '~> 15.0.0'
 
   target 'CBHTTPTests' do
     inherit! :search_paths
