@@ -11,7 +11,7 @@ public enum WebConnectionState {
     case connected
 
     /// Determine whether connection is live
-    var isConnected: Bool {
+    public var isConnected: Bool {
         guard case .connected = self else { return false }
 
         return true

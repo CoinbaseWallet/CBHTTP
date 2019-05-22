@@ -15,6 +15,7 @@ public final class WebSocket: WebSocketDelegate {
     private var isManualClose = false
     private var reconnectAttempts: UInt64 = 0
     private var heartbeatDisposeBag = DisposeBag()
+    private var isConnected: Bool = false
     private lazy var serialScheduler = SerialDispatchQueueScheduler(
         queue: self.accessQueue,
         internalSerialQueueName: "CBHTTP.WebSocket.serialScheduler"
@@ -25,9 +26,6 @@ public final class WebSocket: WebSocketDelegate {
 
     /// Observable for web socket connection state
     public let connectionStateObservable: Observable<WebConnectionState>
-
-    /// Determine whether connection to websocket server has been established
-    public private(set) var isConnected: Bool = false
 
     /// Default constructor for given URL
     ///
