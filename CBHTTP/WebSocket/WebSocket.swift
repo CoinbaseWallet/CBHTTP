@@ -68,7 +68,9 @@ public final class WebSocket: WebSocketDelegate {
         }
 
         return connectionStateObservable
-            .do(onSubscribed: { [weak self] in self?.socket.connect() })
+            .do(onSubscribed: {
+                DispatchQueue.global(qos: .userInitiated).async { self.socket.connect() }
+            })
             .filter { $0.isConnected }
             .take(1)
             .asSingle()
@@ -90,7 +92,9 @@ public final class WebSocket: WebSocketDelegate {
         guard isCurrentlyConnected else { return .just(()) }
 
         return connectionStateObservable
-            .do(onSubscribed: { [weak self] in self?.socket.disconnect() })
+            .do(onSubscribed: {
+                DispatchQueue.global(qos: .userInitiated).async { self.socket.disconnect() }
+            })
             .filter { !$0.isConnected }
             .take(1)
             .asSingle()
