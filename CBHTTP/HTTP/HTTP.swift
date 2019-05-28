@@ -32,7 +32,7 @@ public struct HTTP {
     ///     - request: An instance of `HTTPRequest` used for API call
     ///
     /// - Returns: An Single for the HTTP request
-    static func makeDecodableRequest<T>(request: HTTPRequest<T>) -> Single<T> {
+    static func makeDecodableRequest<T>(request: HTTPRequest<T>) -> Single<HTTPResponse<T>> {
         guard let responseParser = request.responseParser else {
             return .error(HTTPError.missingResponseParser)
         }
@@ -40,7 +40,9 @@ public struct HTTP {
         return task(for: request).flatMap { result in
             do {
                 let parsed: T = try responseParser(result.data)
-                return .just(parsed)
+                let response = HTTPResponse(headers: result.response.allHeaderFields, body: parsed)
+
+                return .just(response)
             } catch {
                 throw HTTPError.deserializationError(error: error)
             }

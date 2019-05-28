@@ -19,21 +19,24 @@ class CBHTTPTests: XCTestCase {
         let host = HTTPService.identity.url.host!
         let expectedUsername = "satoshi"
         let expectedID = 12345
+        let responseHeaders = ["Content-Type": "application/json"]
 
         stub(condition: isHost(host) && isPath("/user/current")) { request in
             XCTAssertEqual(request.httpMethod, "GET")
             let json: [AnyHashable: Any] = ["id": expectedID, "username": expectedUsername]
-            return OHHTTPStubsResponse(jsonObject: json, statusCode: 200, headers: ["Content-Type": "application/json"])
+            return OHHTTPStubsResponse(jsonObject: json, statusCode: 200, headers: responseHeaders)
         }
 
-        let user = try observable.toBlocking(timeout: unitTestsTimeout).single()
-        XCTAssertEqual(expectedUsername, user.username)
-        XCTAssertEqual(expectedID, user.id)
+        let response = try observable.toBlocking(timeout: unitTestsTimeout).single()
+        XCTAssertEqual(expectedUsername, response.body.username)
+        XCTAssertEqual(expectedID, response.body.id)
+        responseHeaders.forEach { XCTAssertEqual($1, response.headers[$0] as? String) }
     }
 
     func testPostUserRequest() throws {
         let expectedUsername = "biggie"
         let expectedID = 3
+        let responseHeaders = ["Content-Type": "application/json"]
         let params: [String: Any] = ["id": expectedID, "username": expectedUsername]
         let observable = HTTP.post(
             service: .identity,
@@ -55,13 +58,14 @@ class CBHTTPTests: XCTestCase {
 
             let userJSON: [AnyHashable: Any] = ["id": expectedID, "username": expectedUsername]
             let json: [AnyHashable: Any] = ["status": "ok", "user": userJSON]
-            return OHHTTPStubsResponse(jsonObject: json, statusCode: 200, headers: ["Content-Type": "application/json"])
+            return OHHTTPStubsResponse(jsonObject: json, statusCode: 200, headers: responseHeaders)
         }
 
         let response = try observable.toBlocking(timeout: unitTestsTimeout).single()
-        XCTAssertEqual("ok", response.status)
-        XCTAssertEqual(expectedUsername, response.user.username)
-        XCTAssertEqual(expectedID, response.user.id)
+        XCTAssertEqual("ok", response.body.status)
+        XCTAssertEqual(expectedUsername, response.body.user.username)
+        XCTAssertEqual(expectedID, response.body.user.id)
+        responseHeaders.forEach { XCTAssertEqual($1, response.headers[$0] as? String) }
     }
 
     func testGetUserUsingParseClosure() throws {
@@ -112,6 +116,7 @@ class CBHTTPTests: XCTestCase {
     func testDeleteUserRequestUsingDecodable() throws {
         let expectedUsername = "biggie"
         let expectedID = 3
+        let responseHeaders = ["Content-Type": "application/json"]
         let host = HTTPService.identity.url.host!
         let observable = HTTP.delete(service: .identity, path: "/user", timeout: 203, for: MockUser.self)
 
@@ -120,12 +125,13 @@ class CBHTTPTests: XCTestCase {
             XCTAssertEqual(request.timeoutInterval, 203)
 
             let json: [AnyHashable: Any] = ["id": expectedID, "username": expectedUsername]
-            return OHHTTPStubsResponse(jsonObject: json, statusCode: 200, headers: ["Content-Type": "application/json"])
+            return OHHTTPStubsResponse(jsonObject: json, statusCode: 200, headers: responseHeaders)
         }
 
-        let user = try observable.toBlocking(timeout: unitTestsTimeout).single()
-        XCTAssertEqual(expectedUsername, user.username)
-        XCTAssertEqual(expectedID, user.id)
+        let response = try observable.toBlocking(timeout: unitTestsTimeout).single()
+        XCTAssertEqual(expectedUsername, response.body.username)
+        XCTAssertEqual(expectedID, response.body.id)
+        responseHeaders.forEach { XCTAssertEqual($1, response.headers[$0] as? String) }
     }
 
     func testOptionalGetUser() throws {
@@ -133,16 +139,18 @@ class CBHTTPTests: XCTestCase {
         let host = HTTPService.identity.url.host!
         let expectedUsername = "satoshi"
         let expectedID = 12345
+        let responseHeaders = ["Content-Type": "application/json"]
 
         stub(condition: isHost(host) && isPath("/user/current")) { request in
             XCTAssertEqual(request.httpMethod, "GET")
             let json: [AnyHashable: Any] = ["id": expectedID, "username": expectedUsername]
-            return OHHTTPStubsResponse(jsonObject: json, statusCode: 200, headers: ["Content-Type": "application/json"])
+            return OHHTTPStubsResponse(jsonObject: json, statusCode: 200, headers: responseHeaders)
         }
 
-        let user = try observable.toBlocking(timeout: unitTestsTimeout).single()
-        XCTAssertEqual(expectedUsername, user?.username)
-        XCTAssertEqual(expectedID, user?.id)
+        let response = try observable.toBlocking(timeout: unitTestsTimeout).single()
+        XCTAssertEqual(expectedUsername, response.body?.username)
+        XCTAssertEqual(expectedID, response.body?.id)
+        responseHeaders.forEach { XCTAssertEqual($1, response.headers[$0] as? String) }
     }
 }
 
