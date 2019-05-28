@@ -21,7 +21,7 @@ extension HTTP {
         headers: [String: String]? = nil,
         timeout: TimeInterval = HTTP.kDefaultTimeout,
         for respType: T.Type
-    ) -> Single<T> where T: Decodable {
+    ) -> Single<HTTPResponse<T>> where T: Decodable {
         let request = HTTPRequest<T>(
             service: service,
             method: .get,

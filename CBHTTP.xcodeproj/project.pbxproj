@@ -12,6 +12,7 @@
 		53D14815A47FF8203ECA1722 /* Pods_CBHTTPTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEA6C206306FBFFD4D382958 /* Pods_CBHTTPTests.framework */; };
 		AB3B00322294A9A300F5CFDB /* CBHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E36C67218B62F9005F7DC6 /* CBHTTP.framework */; };
 		AB3B00382294AA9300F5CFDB /* CBHTTPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E36CA0218B64BF005F7DC6 /* CBHTTPTests.swift */; };
+		D3C8C078229DD7EA00E4238D /* HTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C8C077229DD7EA00E4238D /* HTTPResponse.swift */; };
 		E7779096218C8C4200A9260C /* WebIncomingDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7779095218C8C4200A9260C /* WebIncomingDataType.swift */; };
 		E7779098218C8C9A00A9260C /* WebConnectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7779097218C8C9A00A9260C /* WebConnectionState.swift */; };
 		E7E36C78218B62F9005F7DC6 /* CBHTTP.h in Headers */ = {isa = PBXBuildFile; fileRef = E7E36C6A218B62F9005F7DC6 /* CBHTTP.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -48,6 +49,7 @@
 		98CE786C630FB3C25AE16CFA /* Pods-CBHTTP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CBHTTP.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CBHTTP/Pods-CBHTTP.debug.xcconfig"; sourceTree = "<group>"; };
 		AB3B002D2294A9A300F5CFDB /* CBHTTPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CBHTTPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B747DA8D8D97B6F6D7008DE8 /* Pods_CBHTTP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CBHTTP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3C8C077229DD7EA00E4238D /* HTTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPResponse.swift; sourceTree = "<group>"; };
 		E7779095218C8C4200A9260C /* WebIncomingDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebIncomingDataType.swift; sourceTree = "<group>"; };
 		E7779097218C8C9A00A9260C /* WebConnectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebConnectionState.swift; sourceTree = "<group>"; };
 		E7E36C67218B62F9005F7DC6 /* CBHTTP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CBHTTP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,6 +203,7 @@
 				E7E36C8F218B6386005F7DC6 /* HTTP.swift */,
 				E7E36C8E218B6386005F7DC6 /* HTTPMethod.swift */,
 				E7E36C8D218B6386005F7DC6 /* HTTPRequest.swift */,
+				D3C8C077229DD7EA00E4238D /* HTTPResponse.swift */,
 				E7E36C90218B6386005F7DC6 /* HTTPService.swift */,
 			);
 			path = HTTP;
@@ -413,6 +416,7 @@
 				E7E36C9C218B6386005F7DC6 /* HTTPMethod.swift in Sources */,
 				E7E36C98218B6386005F7DC6 /* ConnectionStatus.swift in Sources */,
 				E7779098218C8C9A00A9260C /* WebConnectionState.swift in Sources */,
+				D3C8C078229DD7EA00E4238D /* HTTPResponse.swift in Sources */,
 				E7779096218C8C4200A9260C /* WebIncomingDataType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
