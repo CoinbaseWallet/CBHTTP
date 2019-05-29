@@ -47,7 +47,10 @@ public final class WebSocket: WebSocketDelegate {
         incomingObservable = incomingSubject.asObservable()
         connectionStateObservable = connectionStateSubject.asObservable()
 
-        socket = Starscream.WebSocket(url: url)
+        var request = URLRequest(url: url)
+        request.allHTTPHeaderFields = ["Origin": ""]
+
+        socket = Starscream.WebSocket(request: request)
         socket.delegate = self
         socket.callbackQueue = DispatchQueue(label: "WebSocket.socket.callbackQueue")
     }
