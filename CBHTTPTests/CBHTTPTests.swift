@@ -152,6 +152,42 @@ class CBHTTPTests: XCTestCase {
         XCTAssertEqual(expectedID, response.body?.id)
         responseHeaders.forEach { XCTAssertEqual($1, response.headers[$0] as? String) }
     }
+
+    func testBasicAuth() throws {
+        let credentials = Credentials(username: "username", password: "password")
+        let observable = HTTP.get(
+            service: .identity,
+            credentials: credentials,
+            path: "/user/current",
+            for: MockUser.self
+        )
+
+        let host = HTTPService.identity.url.host!
+        let expectedUsername = "satoshi"
+        let expectedID = 12345
+        let responseHeaders = ["Content-Type": "application/json"]
+
+        stub(condition: isHost(host) && isPath("/user/current")) { request in
+            XCTAssertEqual(request.httpMethod, "GET")
+
+            guard
+                let basicAuthHeader = request.allHTTPHeaderFields?["Authorization"],
+                let encodedCredentials = basicAuthHeader.split(separator: " ")[safe: 1],
+                let credentialsData = Data(base64Encoded: String(encodedCredentials)),
+                let credentialsString = String(data: credentialsData, encoding: .utf8)
+            else {
+                XCTFail("missing basic auth")
+                return OHHTTPStubsResponse(jsonObject: [], statusCode: 400, headers: responseHeaders)
+            }
+
+            XCTAssertEqual("\(credentials.username):\(credentials.password)", credentialsString)
+
+            let json: [AnyHashable: Any] = ["id": expectedID, "username": expectedUsername]
+            return OHHTTPStubsResponse(jsonObject: json, statusCode: 200, headers: responseHeaders)
+        }
+
+        _ = try observable.toBlocking(timeout: unitTestsTimeout).single()
+    }
 }
 
 struct MockPostUserResponse: Codable {
@@ -200,5 +236,11 @@ extension Data {
         buffer.deallocate()
 
         input.close()
+    }
+}
+
+extension Collection where Index == Int {
+    subscript(safe index: Int) -> Iterator.Element? {
+        return index >= count || index < 0 ? nil : self[index]
     }
 }

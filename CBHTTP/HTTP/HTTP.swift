@@ -62,17 +62,20 @@ public struct HTTP {
     /// Update data using given request.
     ///
     /// - Parameters:
-    ///     - service: The service for the API call. Used as baseURL
-    ///     - method:  HTTP method i.e. POST, GET, etc
-    ///     - path:    The relative path for the API call. Appended to the baseURL.
-    ///     - headers: A [String: String] dictionary mapping HTTP header field names to values. Defaults to nil.
-    ///     - timeout: How many seconds before the request times out. Defaults to 15.0
+    ///     - data:        The data to upload
+    ///     - service:     The service for the API call. Used as baseURL
+    ///     - method:      HTTP method i.e. POST, GET, etc
+    ///     - credentials: HTTP basic authentication credentials
+    ///     - path:        The relative path for the API call. Appended to the baseURL.
+    ///     - headers:     A [String: String] dictionary mapping HTTP header field names to values. Defaults to nil.
+    ///     - timeout:     How many seconds before the request times out. Defaults to 15.0
     ///
     /// - Returns: An Single with reponse `Data` for the HTTP request
     public static func upload(
         data: Data,
         service: HTTPService,
         method: HTTPMethod,
+        credentials: Credentials? = nil,
         path: String,
         headers: [String: String]? = nil,
         timeout: TimeInterval = 120
@@ -80,6 +83,7 @@ public struct HTTP {
         let request = HTTPRequest<Data>(
             service: service,
             method: method,
+            credentials: credentials,
             path: path,
             data: data,
             headers: headers,
