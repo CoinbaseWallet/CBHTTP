@@ -13,6 +13,9 @@ public struct HTTPRequest<T> {
     /// HTTP method i.e. GET, POST, PUT, etc
     public let method: HTTPMethod
 
+    /// HTTP basic authentication credentials
+    public let credentials: Credentials?
+
     /// Service relevant path
     public let path: String
 
@@ -34,17 +37,19 @@ public struct HTTPRequest<T> {
     /// Default constuctor
     ///
     /// - Parameters:
-    ///   - service:    The service for the API call. Used as baseURL
-    ///   - method:     HTTP method i.e. POST, GET, etc
-    ///   - path:       The relative path for the API call. Appended to the baseURL.
-    ///   - parameters: A JSON object, to be sent as the HTTP body data.
-    ///   - data:       data bytes to be sent as the body.
-    ///   - headers:    A [String: String] dictionary mapping HTTP header field names to values. Defaults to nil.
-    ///   - timeout:    How many seconds before the request times out. Defaults to 15.0
-    ///   - respType:   Decodable model used to parse json to given model
+    ///   - service:     The service for the API call. Used as baseURL
+    ///   - method:      HTTP method i.e. POST, GET, etc
+    ///   - credentials: HTTP basic authentication credentials
+    ///   - path:        The relative path for the API call. Appended to the baseURL.
+    ///   - parameters:  A JSON object, to be sent as the HTTP body data.
+    ///   - data:        data bytes to be sent as the body.
+    ///   - headers:     A [String: String] dictionary mapping HTTP header field names to values. Defaults to nil.
+    ///   - timeout:     How many seconds before the request times out. Defaults to 15.0
+    ///   - respType:    Decodable model used to parse json to given model
     public init(
         service: HTTPService,
         method: HTTPMethod,
+        credentials: Credentials?,
         path: String,
         parameters: [String: Any]? = nil,
         data: Data? = nil,
@@ -58,6 +63,7 @@ public struct HTTPRequest<T> {
         self.data = data
         self.timeout = timeout
         self.method = method
+        self.credentials = credentials
         responseParser = parser
         baseURL = service.url
     }
@@ -95,6 +101,10 @@ public struct HTTPRequest<T> {
         request?.setValue("application/json", forHTTPHeaderField: "Content-Type")
         headers?.forEach { request?.setValue($0.value, forHTTPHeaderField: $0.key) }
 
+        if let basicAuth = credentials?.basicAuth {
+            request?.setValue(basicAuth, forHTTPHeaderField: "Authorization")
+        }
+
         return request
     }
 }
@@ -103,16 +113,18 @@ extension HTTPRequest where T: Decodable {
     /// Constructor for `Decodable` models
     ///
     /// - Parameters:
-    ///   - service:    The service for the API call. Used as baseURL
-    ///   - method:     HTTP method i.e. POST, GET, etc
-    ///   - path:       The relative path for the API call. Appended to the baseURL.
-    ///   - parameters: A JSON object, to be sent as the HTTP body data.
-    ///   - headers:    A [String: String] dictionary mapping HTTP header field names to values. Defaults to nil.
-    ///   - timeout:    How many seconds before the request times out. Defaults to 15.0
-    ///   - parser:     Closure called to parse Data to given model
+    ///   - service:     The service for the API call. Used as baseURL
+    ///   - method:      HTTP method i.e. POST, GET, etc
+    ///   - credentials: HTTP basic authentication credentials
+    ///   - path:        The relative path for the API call. Appended to the baseURL.
+    ///   - parameters:  A JSON object, to be sent as the HTTP body data.
+    ///   - headers:     A [String: String] dictionary mapping HTTP header field names to values. Defaults to nil.
+    ///   - timeout:     How many seconds before the request times out. Defaults to 15.0
+    ///   - parser:      Closure called to parse Data to given model
     public init(
         service: HTTPService,
         method: HTTPMethod,
+        credentials: Credentials?,
         path: String,
         parameters: [String: Any]? = nil,
         headers: [String: String]? = nil,
@@ -122,6 +134,7 @@ extension HTTPRequest where T: Decodable {
         self.init(
             service: service,
             method: method,
+            credentials: credentials,
             path: path,
             parameters: parameters,
             headers: headers,

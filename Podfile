@@ -6,6 +6,7 @@ def common_pods
   pod 'RxSwift', '~> 4.4.0'
   pod 'RxCocoa', '~> 4.4.0'
   pod 'Starscream', '~> 3.1'
+  pod 'SwiftFormat/CLI', '0.37.2'
 end
 
 target 'CBHTTP' do
