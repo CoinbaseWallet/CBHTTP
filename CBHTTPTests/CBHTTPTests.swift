@@ -157,8 +157,8 @@ class CBHTTPTests: XCTestCase {
         let credentials = Credentials(username: "username", password: "password")
         let observable = HTTP.get(
             service: .identity,
-            credentials: credentials,
             path: "/user/current",
+            credentials: credentials,
             for: MockUser.self
         )
 

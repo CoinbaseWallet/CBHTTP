@@ -7,8 +7,8 @@ extension HTTP {
     ///
     /// - Parameters:
     ///   - service:     The service for the API call. Used as baseURL
-    ///   - credentials: HTTP basic auth credentials
     ///   - path:        The relative path for the API call. Appended to the baseURL.
+    ///   - credentials: HTTP basic auth credentials
     ///   - parameters:  A JSON object, to be sent as the HTTP body data.
     ///   - headers:     A [String: String] dictionary mapping HTTP header field names to values. Defaults to nil.
     ///   - timeout:     How many seconds before the request times out. Defaults to 15.0
@@ -17,8 +17,8 @@ extension HTTP {
     /// - Returns: An instance of Single<T>.
     public static func post<T>(
         service: HTTPService,
-        credentials: Credentials? = nil,
         path: String,
+        credentials: Credentials? = nil,
         parameters: [String: Any]? = nil,
         headers: [String: String]? = nil,
         timeout: TimeInterval = HTTP.kDefaultTimeout,
@@ -41,8 +41,8 @@ extension HTTP {
     ///
     /// - Parameters:
     ///   - service:     The service for the API call. Used as baseURL
-    ///   - credentials: HTTP basic auth credentials
     ///   - path:        The relative path for the API call. Appended to the baseURL.
+    ///   - credentials: HTTP basic auth credentials
     ///   - parameters:  A JSON object, to be sent as the HTTP body data.
     ///   - headers:     A [String: String] dictionary mapping HTTP header field names to values. Defaults to nil.
     ///   - timeout:     How many seconds before the request times out. Defaults to 15.0
@@ -51,8 +51,8 @@ extension HTTP {
     /// - Returns: An instance of Single<T>.
     public static func post(
         service: HTTPService,
-        credentials: Credentials? = nil,
         path: String,
+        credentials: Credentials? = nil,
         parameters: [String: Any]? = nil,
         headers: [String: String]? = nil,
         timeout: TimeInterval = HTTP.kDefaultTimeout

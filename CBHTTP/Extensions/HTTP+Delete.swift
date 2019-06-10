@@ -7,8 +7,8 @@ extension HTTP {
     ///
     /// - Parameters:
     ///   - service:     The service for the API call. Used as baseURL
-    ///   - credentials: HTTP basic auth credentials
     ///   - path:        The relative path for the API call. Appended to the baseURL.
+    ///   - credentials: HTTP basic auth credentials
     ///   - parameters:  A dictionary with params to be sent as query params
     ///   - headers:     A [String: String] dictionary mapping HTTP header field names to values. Defaults to nil.
     ///   - timeout:     How many seconds before the request times out. Defaults to 15.0
@@ -17,8 +17,8 @@ extension HTTP {
     /// - Returns: An instance of Single<T>.
     public static func delete<T>(
         service: HTTPService,
-        credentials: Credentials? = nil,
         path: String,
+        credentials: Credentials? = nil,
         parameters: [String: String]? = nil,
         headers: [String: String]? = nil,
         timeout: TimeInterval = HTTP.kDefaultTimeout,
@@ -42,8 +42,8 @@ extension HTTP {
     ///
     /// - Parameters:
     ///   - service:     The service for the API call. Used as baseURL
-    ///   - credentials: HTTP basic auth credentials
     ///   - path:        The relative path for the API call. Appended to the baseURL.
+    ///   - credentials: HTTP basic auth credentials
     ///   - parameters:  A dictionary with params to be sent as query params
     ///   - headers:     A [String: String] dictionary mapping HTTP header field names to values. Defaults to nil.
     ///   - timeout:     How many seconds before the request times out. Defaults to 15.0
@@ -52,8 +52,8 @@ extension HTTP {
     /// - Returns: An instance of Single<T>.
     public static func delete(
         service: HTTPService,
-        credentials: Credentials? = nil,
         path: String,
+        credentials: Credentials? = nil,
         parameters: [String: String]? = nil,
         headers: [String: String]? = nil,
         timeout: TimeInterval = HTTP.kDefaultTimeout
