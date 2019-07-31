@@ -7,7 +7,7 @@ sealed class ConnectionStatus {
     /**
      * Network is online using the given network kind i.e. wifi, wwan, etc
      */
-    data class Connected(val kind: Set<ConnectionKind>) : ConnectionStatus()
+    data class Connected(val kind: ConnectionKind) : ConnectionStatus()
 
     /**
      * Network is offline

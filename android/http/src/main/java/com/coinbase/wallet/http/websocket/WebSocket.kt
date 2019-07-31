@@ -83,7 +83,7 @@ class WebSocket(
     *
     * @return A single indication connection was terminated
     */
-    public fun disconnect(): Single<Unit> {
+    fun disconnect(): Single<Unit> {
         var isCurrentlyConnected = false
 
         accessQueue.withLock {

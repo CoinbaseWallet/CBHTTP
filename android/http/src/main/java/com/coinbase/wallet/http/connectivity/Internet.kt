@@ -11,6 +11,7 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
+import io.reactivex.subjects.ReplaySubject
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
@@ -18,7 +19,7 @@ import java.net.URL
 object Internet : BroadcastReceiver() {
     private val disposeBag = CompositeDisposable()
     private val serialScheduler = Schedulers.single()
-    private var networkUpdatesSubject = PublishSubject.create<Context>()
+    private val networkUpdatesSubject = ReplaySubject.create<Context>(1)
     private val changes = BehaviorSubject.createDefault<ConnectionStatus>(ConnectionStatus.Unknown)
 
     /**
@@ -67,14 +68,8 @@ object Internet : BroadcastReceiver() {
                     val hasWifi = capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
 
                     when {
-                        hasCell && !hasWifi -> ConnectionStatus.Connected(setOf(ConnectionKind.CELL))
-                        !hasCell && hasWifi -> ConnectionStatus.Connected(setOf(ConnectionKind.WIFI))
-                        hasCell && hasWifi -> ConnectionStatus.Connected(
-                                setOf(
-                                        ConnectionKind.CELL,
-                                        ConnectionKind.WIFI
-                                )
-                        )
+                        hasCell && !hasWifi -> ConnectionStatus.Connected(ConnectionKind.CELL)
+                        hasWifi -> ConnectionStatus.Connected(ConnectionKind.WIFI)
                         else -> ConnectionStatus.Unknown
                     }
                 } else {
@@ -95,10 +90,8 @@ object Internet : BroadcastReceiver() {
     }
 
     override fun onReceive(context: Context, intent: Intent) {
-        Schedulers.io().scheduleDirect {
-            if (intent.action == ConnectivityManager.CONNECTIVITY_ACTION) {
-                networkUpdatesSubject.onNext(context)
-            }
+        if (intent.action == ConnectivityManager.CONNECTIVITY_ACTION) {
+            networkUpdatesSubject.onNext(context)
         }
     }
 
