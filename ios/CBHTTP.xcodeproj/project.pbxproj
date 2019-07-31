@@ -137,8 +137,8 @@
 		E7E36C5D218B62F9005F7DC6 = {
 			isa = PBXGroup;
 			children = (
-				E7E36C69218B62F9005F7DC6 /* CBHTTP */,
-				E7E36C74218B62F9005F7DC6 /* CBHTTPTests */,
+				E7E36C69218B62F9005F7DC6 /* Source */,
+				E7E36C74218B62F9005F7DC6 /* Tests */,
 				C7AA262642B3E0B6466F6A5C /* Frameworks */,
 				9ACB2DE8CFC33B5E6878EA96 /* Pods */,
 				E7E36C68218B62F9005F7DC6 /* Products */,
@@ -154,7 +154,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E7E36C69218B62F9005F7DC6 /* CBHTTP */ = {
+		E7E36C69218B62F9005F7DC6 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				D3B69D5722AECEDA0078A06F /* Models */,
@@ -165,16 +165,16 @@
 				E7E36C81218B632E005F7DC6 /* Module */,
 				E7779094218C8BD100A9260C /* WebSocket */,
 			);
-			path = CBHTTP;
+			path = Source;
 			sourceTree = "<group>";
 		};
-		E7E36C74218B62F9005F7DC6 /* CBHTTPTests */ = {
+		E7E36C74218B62F9005F7DC6 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				E7E36CA0218B64BF005F7DC6 /* CBHTTPTests.swift */,
 				E7E36C77218B62F9005F7DC6 /* Info.plist */,
 			);
-			path = CBHTTPTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		E7E36C81218B632E005F7DC6 /* Module */ = {
@@ -449,7 +449,7 @@
 			baseConfigurationReference = 927921F5535D8B589B38CDDA /* Pods-CBHTTPTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CBHTTPTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -468,7 +468,7 @@
 			baseConfigurationReference = 0637C744A4C41B4F7A2EAF92 /* Pods-CBHTTPTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = CBHTTPTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -617,7 +617,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/CBHTTP/Module/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Module/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -644,7 +644,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/CBHTTP/Module/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Module/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = (

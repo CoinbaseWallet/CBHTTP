@@ -10,9 +10,9 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/CoinbaseWallet/CBHTTP.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/coinbase'
 
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '11.0'
   s.swift_version = '4.2'
-  s.source_files = 'CBHTTP/**/*.swift'
+  s.source_files = 'ios/Source/**/*.swift'
 
   s.dependency 'RxSwift'
   s.dependency 'RxCocoa'
