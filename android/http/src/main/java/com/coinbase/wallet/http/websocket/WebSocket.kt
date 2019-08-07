@@ -36,7 +36,7 @@ class WebSocket(
     private val disposeBag = CompositeDisposable()
     private val accessQueue = ReentrantLock()
     private val incomingSubject = PublishSubject.create<WebIncomingDataType>()
-    private val connectionStateSubject = ReplaySubject.create<WebConnectionState>()
+    private val connectionStateSubject = ReplaySubject.create<WebConnectionState>(1)
     private val client = OkHttpClient.Builder()
         .pingInterval(10, TimeUnit.SECONDS) // heartbeat
         .retryOnConnectionFailure(false)
@@ -68,6 +68,10 @@ class WebSocket(
 
         if (isCurrentlyConnected) {
             return Single.just(Unit)
+        }
+
+        accessQueue.withLock {
+            reconnectAttempts = 0
         }
 
         return connectionStateObservable
@@ -217,7 +221,7 @@ class WebSocket(
     // Socket helpers
 
     private fun connectSocket() {
-        val request = Request.Builder().url(this.url).build()
+        val request = Request.Builder().url(this.url).header("Origin", "").build()
         client.dispatcher().cancelAll()
         socket = client.newWebSocket(request, this)
     }
