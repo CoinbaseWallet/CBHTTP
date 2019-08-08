@@ -1,0 +1,74 @@
+apply from: '../gradle/dependencies.gradle'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 28
+    }
+}
+
+configurations {
+    ktlint
+}
+
+dependencies {
+
+    ktlint "com.pinterest:ktlint:${otherVersions.ktlint}"
+
+    implementation(
+            // kotlin
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}",
+
+            // ReactiveX 2
+            "io.reactivex.rxjava2:rxjava:${versions.rxJava}",
+            "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
+            "io.reactivex.rxjava2:rxkotlin:${versions.rxKotlin}",
+
+            "com.squareup.moshi:moshi-kotlin:${versions.moshi}",
+
+            // Logging
+            "com.jakewharton.timber:timber:${versions.timber}",
+
+            "com.squareup.okhttp3:okhttp:${versions.okhttp3}",
+
+            project(":libraries:core")
+    )
+
+    testImplementation(
+            "junit:junit:${testVersions.junit4}"
+    )
+
+    androidTestImplementation(
+            "androidx.test.ext:junit:${testVersions.androidXTestExtJUnit}",
+            "androidx.test:runner:${testVersions.androidXTestRunner}",
+            "androidx.test:core:${testVersions.androidXTestCore}"
+    )
+}
+
+
+task ktlint(type: JavaExec, group: "verification") {
+    description = "Check Kotlin code style."
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+    args "src/**/*.kt"
+}
+
+check.dependsOn ktlint
+
+task ktlintFormat(type: JavaExec, group: "formatting") {
+    description = "Fix Kotlin code style deviations."
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+    args "-F", "src/**/*.kt"
+}
+
+repositories {
+    mavenCentral()
+}

@@ -70,6 +70,10 @@ public final class WebSocket: WebSocketDelegate {
             return .just(())
         }
 
+        accessQueue.sync {
+            self.reconnectAttempts = 0
+        }
+
         return connectionStateObservable
             .do(onSubscribed: {
                 DispatchQueue.global(qos: .userInitiated).async { self.socket.connect() }
