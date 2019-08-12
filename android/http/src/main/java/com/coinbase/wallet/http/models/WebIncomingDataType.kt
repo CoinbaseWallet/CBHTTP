@@ -14,4 +14,3 @@ sealed class WebIncomingDataType {
      */
     data class WebIncomingData(val data: ByteArray) : WebIncomingDataType()
 }
-
