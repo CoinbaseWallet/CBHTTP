@@ -3,12 +3,10 @@ package com.coinbase.wallet.http.websocket
 import com.coinbase.wallet.core.extensions.asUnit
 import com.coinbase.wallet.core.extensions.takeSingle
 import com.coinbase.wallet.core.interfaces.Destroyable
-import com.coinbase.wallet.exceptions.WebSocketException
 import com.coinbase.wallet.http.connectivity.Internet
+import com.coinbase.wallet.http.exceptions.WebSocketException
 import com.coinbase.wallet.http.models.WebConnectionState
-import com.coinbase.wallet.http.models.WebIncomingData
 import com.coinbase.wallet.http.models.WebIncomingDataType
-import com.coinbase.wallet.http.models.WebIncomingText
 import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
@@ -150,11 +148,11 @@ class WebSocket(
 
     override fun onMessage(webSocket: WebSocket, bytes: ByteString) {
         val data = bytes.toByteArray()
-        incomingSubject.onNext(WebIncomingData(data))
+        incomingSubject.onNext(WebIncomingDataType.WebIncomingData(data))
     }
 
     override fun onMessage(webSocket: WebSocket, text: String) {
-        incomingSubject.onNext(WebIncomingText(text))
+        incomingSubject.onNext(WebIncomingDataType.WebIncomingText(text))
     }
 
     override fun onOpen(webSocket: WebSocket, response: Response) {
@@ -166,7 +164,7 @@ class WebSocket(
             reconnectAttempts = 0
         }
 
-        connectionStateSubject.onNext(WebConnectionState.Connected())
+        connectionStateSubject.onNext(WebConnectionState.Connected)
 
         if (isManualClose) {
             disconnectSocket()
