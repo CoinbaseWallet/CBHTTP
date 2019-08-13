@@ -1,5 +1,7 @@
 package com.coinbase.wallet.http
 
+import com.coinbase.wallet.core.extensions.Strings
+import com.coinbase.wallet.core.extensions.empty
 import com.coinbase.wallet.core.util.JSON
 import com.coinbase.wallet.http.extensions.appendingPathComponent
 import com.coinbase.wallet.http.extensions.asHTTPResponse
@@ -65,7 +67,9 @@ object HTTP {
         return Single
             .create<HTTPResponse<T>> { emitter ->
                 client.newCall(request).enqueue(object : Callback {
-                    override fun onFailure(call: Call, e: IOException) { emitter.onError(e) }
+                    override fun onFailure(call: Call, e: IOException) {
+                        emitter.onError(e)
+                    }
 
                     override fun onResponse(call: Call, response: Response) {
                         emitter.onSuccess(response.asHTTPResponse())
@@ -106,7 +110,9 @@ object HTTP {
         return Single
             .create<HTTPResponse<T>> { emitter ->
                 client.newCall(request).enqueue(object : Callback {
-                    override fun onFailure(call: Call, e: IOException) { emitter.onError(e) }
+                    override fun onFailure(call: Call, e: IOException) {
+                        emitter.onError(e)
+                    }
 
                     override fun onResponse(call: Call, response: Response) {
                         emitter.onSuccess(response.asHTTPResponse())
@@ -173,11 +179,14 @@ object HTTP {
         headers?.let { headers -> headers.forEach { builder = builder.header(it.key, it.value) } }
         credentials?.basicAuth?.let { builder = builder.header("Authorization", it) }
 
-        if (parameters != null) {
+        val requestBody = if (parameters != null) {
             val jsonStrong = JSON.toJsonString(parameters)
-            val requestBody = RequestBody.create(kJSONContentType, jsonStrong)
-            builder = builder.post(requestBody)
+            RequestBody.create(kJSONContentType, jsonStrong)
+        } else {
+            RequestBody.create(null, Strings.empty)
         }
+
+        builder = builder.post(requestBody)
 
         return builder.url(url).build()
     }
