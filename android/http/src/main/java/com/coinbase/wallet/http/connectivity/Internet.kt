@@ -69,7 +69,7 @@ object Internet : BroadcastReceiver() {
                     when {
                         hasCell && !hasWifi -> ConnectionStatus.Connected(ConnectionKind.CELL)
                         hasWifi -> ConnectionStatus.Connected(ConnectionKind.WIFI)
-                        else -> ConnectionStatus.Unknown
+                        else -> ConnectionStatus.Connected(ConnectionKind.UNKNOWN)
                     }
                 } else {
                     ConnectionStatus.Offline
