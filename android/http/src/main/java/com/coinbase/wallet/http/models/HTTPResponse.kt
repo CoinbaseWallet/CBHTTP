@@ -6,4 +6,4 @@ package com.coinbase.wallet.http.models
  * @property body Decoded HTTP response body
  * @property headers HTTP response headers
  */
-data class HTTPResponse<T : Any>(val body: T, val headers: Map<String, Any>)
+data class HTTPResponse<T : Any>(val body: T, val headers: Map<String, String>)

@@ -9,8 +9,12 @@ import okhttp3.Response
  * Convert an okhttp response to a CBHTTP response
  */
 inline fun <reified T : Any> Response.asHTTPResponse(): HTTPResponse<T> {
-    val json = body()?.string() ?: throw HTTPException.UnableToDeserialize
-    val result = JSON.fromJsonString<T>(json) ?: throw HTTPException.UnableToDeserialize
+    val result = if (T::class.java == ByteArray::class.java) {
+        (body()?.bytes() ?: ByteArray(0)) as T
+    } else {
+        val json = body()?.string() ?: throw HTTPException.UnableToDeserialize
+        JSON.fromJsonString<T>(json) ?: throw HTTPException.UnableToDeserialize
+    }
 
     val rspHeaders = headers()
     val headersMap = (0 until rspHeaders.size())
