@@ -47,8 +47,7 @@ object HTTP {
         path: String,
         credentials: Credentials? = null,
         parameters: Map<String, String>? = null,
-        headers: Map<String, String>? = null,
-        clazz: KClass<T>
+        headers: Map<String, String>? = null
     ): Single<HTTPResponse<T>> {
         var builder = Request.Builder()
         var url = service.url.appendingPathComponent(path)
@@ -95,9 +94,8 @@ object HTTP {
         service: HTTPService,
         path: String,
         credentials: Credentials? = null,
-        parameters: Map<String, String>? = null,
-        headers: Map<String, String>? = null,
-        clazz: KClass<T>
+        parameters: Map<String, Any>? = null,
+        headers: Map<String, String>? = null
     ): Single<HTTPResponse<T>> {
         val request = buildPostRequest(
             service = service,
@@ -122,47 +120,6 @@ object HTTP {
             .subscribeOn(schedulers)
     }
 
-    /**
-     * Creates a HTTP Post operation and parses result using the
-     *
-     * @param service The service for the API call. Used as baseURL
-     * @param path The relative path for the API call. Appended to the baseURL.
-     * @param credentials HTTP basic auth credentials
-     * @param parameters A JSON object, to be sent as the HTTP body data.
-     * @param headers A [String: String] dictionary mapping HTTP header field names to values. Defaults to nil.
-     * @param clazz Clazz model used to parse json to given model
-     *
-     * @return An instance of Single<T>
-     */
-    fun post(
-        service: HTTPService,
-        path: String,
-        credentials: Credentials? = null,
-        parameters: Map<String, String>? = null,
-        headers: Map<String, String>? = null
-    ): Single<ByteArray> {
-        val request = buildPostRequest(
-            service = service,
-            path = path,
-            credentials = credentials,
-            parameters = parameters,
-            headers = headers
-        )
-
-        return Single
-            .create<ByteArray> { emitter ->
-                client.newCall(request).enqueue(object : Callback {
-                    override fun onFailure(call: Call, e: IOException) {
-                        emitter.onError(e)
-                    }
-
-                    override fun onResponse(call: Call, response: Response) {
-                        emitter.onSuccess(response.body()?.bytes() ?: ByteArray(0))
-                    }
-                })
-            }
-            .subscribeOn(schedulers)
-    }
 
     // Helpers
 
@@ -170,7 +127,7 @@ object HTTP {
         service: HTTPService,
         path: String,
         credentials: Credentials?,
-        parameters: Map<String, String>?,
+        parameters: Map<String, Any>?,
         headers: Map<String, String>?
     ): Request {
         var builder = Request.Builder()
@@ -180,8 +137,8 @@ object HTTP {
         credentials?.basicAuth?.let { builder = builder.header("Authorization", it) }
 
         val requestBody = if (parameters != null) {
-            val jsonStrong = JSON.toJsonString(parameters)
-            RequestBody.create(kJSONContentType, jsonStrong)
+            val jsonString = JSON.toJsonString(parameters)
+            RequestBody.create(kJSONContentType, jsonString)
         } else {
             RequestBody.create(null, Strings.empty)
         }
