@@ -21,7 +21,6 @@ import okhttp3.Response
 import java.io.IOException
 import java.net.URL
 import java.util.concurrent.TimeUnit
-import kotlin.reflect.KClass
 
 object HTTP {
     private const val kDefaultTimeout: Long = 15
@@ -119,7 +118,6 @@ object HTTP {
             }
             .subscribeOn(schedulers)
     }
-
 
     // Helpers
 

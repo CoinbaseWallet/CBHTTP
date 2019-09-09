@@ -4,7 +4,6 @@ import com.coinbase.wallet.core.util.JSON
 import com.coinbase.wallet.http.exceptions.HTTPException
 import com.coinbase.wallet.http.models.HTTPResponse
 import okhttp3.Response
-import timber.log.Timber
 
 /**
  * Convert an okhttp response to a CBHTTP response
