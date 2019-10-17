@@ -26,8 +26,13 @@ object HTTP {
     private const val kDefaultTimeout: Long = 15
     private val kJSONContentType = MediaType.parse("application/json; charset=utf-8")
 
-    val client = OkHttpClient.Builder().connectTimeout(kDefaultTimeout, TimeUnit.SECONDS).build()
-    val schedulers = Schedulers.io()
+    @PublishedApi
+    internal val client = OkHttpClient.Builder()
+        .connectTimeout(kDefaultTimeout, TimeUnit.SECONDS)
+        .build()
+
+    @PublishedApi
+    internal val schedulers = Schedulers.io()
 
     /**
      * Creates a HTTP Get operation and parses result using the specified clazz
@@ -121,7 +126,8 @@ object HTTP {
 
     // Helpers
 
-    fun buildPostRequest(
+    @PublishedApi
+    internal fun buildPostRequest(
         service: HTTPService,
         path: String,
         credentials: Credentials?,
