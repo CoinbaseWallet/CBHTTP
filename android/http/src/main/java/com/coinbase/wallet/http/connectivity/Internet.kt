@@ -18,7 +18,7 @@ import java.net.URL
 object Internet : BroadcastReceiver() {
     private val disposeBag = CompositeDisposable()
     private val serialScheduler = Schedulers.single()
-    private val networkUpdatesSubject = ReplaySubject.create<Context>(1)
+    private val networkUpdatesSubject = ReplaySubject.createWithSize<Context>(1)
     private val changes = BehaviorSubject.createDefault<ConnectionStatus>(ConnectionStatus.Unknown)
 
     /**
