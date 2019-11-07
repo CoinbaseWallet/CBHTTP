@@ -34,7 +34,7 @@ class WebSocket(
     private val disposeBag = CompositeDisposable()
     private val accessQueue = ReentrantLock()
     private val incomingSubject = PublishSubject.create<WebIncomingDataType>()
-    private val connectionStateSubject = ReplaySubject.create<WebConnectionState>(1)
+    private val connectionStateSubject = ReplaySubject.createWithSize<WebConnectionState>(1)
     private val client = OkHttpClient.Builder()
         .pingInterval(10, TimeUnit.SECONDS) // heartbeat
         .retryOnConnectionFailure(false)
