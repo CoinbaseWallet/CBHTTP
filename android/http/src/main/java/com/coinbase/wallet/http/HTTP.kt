@@ -23,7 +23,7 @@ import java.net.URL
 import java.util.concurrent.TimeUnit
 
 object HTTP {
-    private const val kDefaultTimeout: Long = 15
+    const val kDefaultTimeout: Long = 15
     private val kJSONContentType = MediaType.parse("application/json; charset=utf-8")
 
     @PublishedApi
