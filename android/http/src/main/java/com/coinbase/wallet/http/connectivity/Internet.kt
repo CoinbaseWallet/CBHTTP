@@ -5,12 +5,19 @@ import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.net.NetworkCapabilities.TRANSPORT_CELLULAR
+import android.net.NetworkCapabilities.TRANSPORT_WIFI
 import android.provider.Settings
+import com.coinbase.wallet.http.connectivity.ConnectionKind.CELL
+import com.coinbase.wallet.http.connectivity.ConnectionKind.UNKNOWN
+import com.coinbase.wallet.http.connectivity.ConnectionKind.WIFI
+import com.coinbase.wallet.http.connectivity.ConnectionStatus.Connected
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.ReplaySubject
+import timber.log.Timber
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
@@ -54,29 +61,23 @@ object Internet : BroadcastReceiver() {
                     } else {
                         ConnectionStatus.Unknown
                     }
-                    .run {
-                        status = this
-                        changes.onNext(this)
+                    .let {
+                        status = it
+                        changes.onNext(it)
                     }
+
                     return@map
                 }
 
                 status = if (activeNetworkInfo?.isConnected == true && isServerReachable()) {
-                    val capabilities = cm.getNetworkCapabilities(activeNetwork)
-                    val hasCell = capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
-                    val hasWifi = capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
-
-                    when {
-                        hasCell && !hasWifi -> ConnectionStatus.Connected(ConnectionKind.CELL)
-                        hasWifi -> ConnectionStatus.Connected(ConnectionKind.WIFI)
-                        else -> ConnectionStatus.Connected(ConnectionKind.UNKNOWN)
-                    }
+                    getStatus(cm.getNetworkCapabilities(activeNetwork))
                 } else {
                     ConnectionStatus.Offline
                 }
 
                 changes.onNext(status)
             }
+            .onErrorReturn { Timber.e(it, "Unable to determine internet status") }
             .subscribe()
             .addTo(disposeBag)
     }
@@ -91,6 +92,23 @@ object Internet : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         if (intent.action == ConnectivityManager.CONNECTIVITY_ACTION) {
             networkUpdatesSubject.onNext(context)
+        }
+    }
+
+    // Helpers
+
+    private fun getStatus(capabilities: NetworkCapabilities?): ConnectionStatus {
+        if (capabilities == null) {
+            return Connected(UNKNOWN)
+        }
+
+        val hasCell = capabilities.hasTransport(TRANSPORT_CELLULAR)
+        val hasWifi = capabilities.hasTransport(TRANSPORT_WIFI)
+
+        return when {
+            hasCell && !hasWifi -> Connected(CELL)
+            hasWifi -> Connected(WIFI)
+            else -> Connected(UNKNOWN)
         }
     }
 
