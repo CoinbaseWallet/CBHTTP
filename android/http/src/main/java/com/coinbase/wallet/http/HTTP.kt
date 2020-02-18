@@ -18,6 +18,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
+import okhttp3.logging.HttpLoggingInterceptor
 import java.io.IOException
 import java.net.URL
 import java.util.concurrent.TimeUnit
@@ -29,6 +30,16 @@ object HTTP {
 
     @PublishedApi
     internal val client = OkHttpClient.Builder()
+        .addNetworkInterceptor(
+            HttpLoggingInterceptor()
+                .apply {
+                    level = if (BuildConfig.DEBUG) {
+                        HttpLoggingInterceptor.Level.BODY
+                    } else {
+                        HttpLoggingInterceptor.Level.NONE
+                    }
+                }
+        )
         .connectTimeout(kDefaultTimeout, TimeUnit.SECONDS)
         .build()
 
