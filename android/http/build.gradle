@@ -37,6 +37,7 @@ dependencies {
             "com.jakewharton.timber:timber:${versions.timber}",
 
             "com.squareup.okhttp3:okhttp:${versions.okhttp3}",
+            "com.squareup.okhttp3:logging-interceptor:${versions.okhttp3}",
 
             project(":libraries:core")
     )
